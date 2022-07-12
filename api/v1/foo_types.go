@@ -30,6 +30,9 @@ type FooSpec struct {
 type FooStatus struct {
 	// Happy will be set to true if Foo found a friend
 	Happy bool `json:"happy,omitempty"`
+
+	// Foo's favorite colour
+	Colour string `json:"colour,omitempty"`
 }
 
 //+kubebuilder:object:root=true

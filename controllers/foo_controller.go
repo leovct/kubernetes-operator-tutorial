@@ -30,6 +30,7 @@ import (
 	"sigs.k8s.io/controller-runtime/pkg/source"
 
 	tutorialv1 "my.domain/tutorial/api/v1"
+	color "my.domain/tutorial/color"
 )
 
 // FooReconciler reconciles a Foo object
@@ -75,6 +76,7 @@ func (r *FooReconciler) Reconcile(ctx context.Context, req ctrl.Request) (ctrl.R
 
 	// Update Foo' happy status
 	foo.Status.Happy = friendFound
+	foo.Status.Colour = color.ConvertStrToColor(foo.Name + foo.Namespace)
 	if err := r.Status().Update(ctx, &foo); err != nil {
 		log.Error(err, "unable to update foo's happy status", "status", friendFound)
 		return ctrl.Result{}, err
